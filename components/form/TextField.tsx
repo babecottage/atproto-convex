@@ -2,7 +2,7 @@ import { useDescription, useTsController } from "@ts-react/form";
 
 export const TextField = () => {
   const {
-    field: { onChange, value },
+    field: { onChange, value, name },
     error,
   } = useTsController<string>();
 
@@ -18,6 +18,7 @@ export const TextField = () => {
           onChange={(e) => onChange(e.target.value)}
           value={value ? value : ""}
           placeholder={placeholder}
+          id={name}
         />
       </label>
       {error && <span className="text-red-500">{error.errorMessage}</span>}

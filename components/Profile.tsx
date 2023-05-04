@@ -1,8 +1,9 @@
 "use client";
-import { agent, useATPAuthentication } from "@/context/ATPProvider";
-import { useAuthorization } from "@/vibes/auth";
+
 import { useState } from "react";
+import { useATP } from "atproto-react/client";
 import { z } from "zod";
+
 import { Form } from "./form";
 
 const LoginSchema = z.object({
@@ -13,12 +14,9 @@ const LoginSchema = z.object({
 });
 
 export const Profile = ({}) => {
-  const { egoDid, egoHandle, setLoginResponseData } = useAuthorization(agent);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { isAuthenticated, login, logout } = useATPAuthentication();
-
+  const { login } = useATP();
   const handleSubmit = async (data: z.infer<typeof LoginSchema>) => {
     setIsSubmitting(true);
 
@@ -26,9 +24,6 @@ export const Profile = ({}) => {
       await login(data.username, data.password);
 
       setIsSubmitting(false);
-
-      console.log("logged in!");
-      // window.location.pathname = "/editor";
     } catch (e) {
       console.error(e);
       setIsSubmitting(false);
@@ -37,8 +32,8 @@ export const Profile = ({}) => {
 
   return (
     <div>
-      {isAuthenticated ? (
-        <h1>{egoHandle}</h1>
+      {false ? (
+        <h1>hi</h1>
       ) : (
         <div>
           Not logged in

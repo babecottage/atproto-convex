@@ -1,7 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ATPProvider, agent } from "@/context/ATPProvider";
-import { Profile } from "@/components/Profile";
+import { Providers } from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ATPProvider agent={agent}>
-          <Profile />
-          {children}
-        </ATPProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

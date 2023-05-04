@@ -15,6 +15,7 @@
     "@types/node": "18.16.1",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
+    "atproto-react": "github:babecottage/atproto-react",
     "autoprefixer": "10.4.14",
     "convex": "^0.13.0",
     "eslint": "8.39.0",
