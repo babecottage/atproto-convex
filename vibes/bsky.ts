@@ -10,3 +10,14 @@ export type LoginResponseDataType = {
   handle: string;
   refreshJwt: string;
 };
+
+// tysm @sabigara/flat
+export type AtpError = {
+  error: "NotFound";
+  message: string;
+};
+
+export function isAtpError(err: unknown): err is AtpError {
+  if (typeof err !== "object" || err === null) return false;
+  return "error" in err && "message" in err;
+}

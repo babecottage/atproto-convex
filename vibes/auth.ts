@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * tysmmmm @louislva
  * https://github.com/louislva/skyline/blob/main/helpers/bsky.ts
