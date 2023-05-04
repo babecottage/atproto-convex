@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useATP } from "atproto-react/client";
+import { useConvexAuth } from "convex/react";
 import { z } from "zod";
 
 import { Form } from "./form";
@@ -16,7 +17,15 @@ const LoginSchema = z.object({
 export const Profile = ({}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { login } = useATP();
+  const { isLoading: isLoadingConvex, isAuthenticated: isAuthenticatedConvex } =
+    useConvexAuth();
+
+  const {
+    login,
+    isLoading: isLoadingATP,
+    isAuthenticated: isAuthenticatedATP,
+  } = useATP();
+
   const handleSubmit = async (data: z.infer<typeof LoginSchema>) => {
     setIsSubmitting(true);
 
@@ -32,8 +41,10 @@ export const Profile = ({}) => {
 
   return (
     <div>
-      {false ? (
-        <h1>hi</h1>
+      {isAuthenticatedATP ? "ATP Authed" : "ATP Not Authed"}
+      {isAuthenticatedConvex ? "Convex Authed" : "Convex Not Authed"}
+      {isAuthenticatedATP ? (
+        <h1>hi bestie</h1>
       ) : (
         <div>
           Not logged in
